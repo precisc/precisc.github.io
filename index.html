@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dave | Consultor de Datos, BI & Calidad</title>
+<title>Dave | Especialista en optimización de procesos y automatización con n8n|Power Automate</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --bg:       #f5f7fa;
-    --bg2:      #eef1f6;
+    --bg:       #fafafa; /* Blanco cálido escandinavo */
+    --bg2:      #f0f2f5; /* Gris muy suave */
     --surface:  #ffffff;
-    --border:   #dde3ed;
-    --accent:   #0066cc;
-    --accent2:  #00aa6c;
-    --text:     #1a2333;
-    --text2:    #4a5873;
-    --text3:    #8a97b0;
-    --danger:   #e03050;
-    --warn:     #d97706;
-    --shadow:   0 2px 16px rgba(0,0,0,.07);
-    --shadow-md:0 6px 28px rgba(0,0,0,.10);
+    --border:   #e1e6ed;
+    --accent:   #2c3e50; /* Azul pizarra / nórdico */
+    --accent2:  #638475; /* Verde salvia */
+    --text:     #1a1f24; /* Casi negro, más suave a la vista */
+    --text2:    #4a5568;
+    --text3:    #718096;
+    --danger:   #e53e3e;
+    --warn:     #dd6b20;
+    --shadow:   0 2px 16px rgba(0,0,0,.04);
+    --shadow-md:0 6px 28px rgba(0,0,0,.08);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -40,7 +40,7 @@
     background:rgba(255,255,255,.93);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--border);
-    box-shadow:0 1px 10px rgba(0,0,0,.06);
+    box-shadow:0 1px 10px rgba(0,0,0,.03);
   }
   .nav-logo{font-size:1.3rem;font-weight:800;color:var(--accent);}
   .nav-links{display:flex;gap:2rem;list-style:none;}
@@ -57,7 +57,7 @@
     min-height:100vh;
     display:flex;align-items:center;
     padding:120px 6% 80px;
-    background:linear-gradient(135deg,#f0f4ff 0%,#f5f7fa 60%,#edf7f2 100%);
+    background:linear-gradient(135deg,#f8f9fa 0%,#fafafa 60%,#f0f4f2 100%);
     position:relative;overflow:hidden;
   }
   #hero::before{
@@ -69,14 +69,14 @@
     position:absolute;border-radius:50%;pointer-events:none;
   }
   .blob1{width:500px;height:500px;top:-80px;right:-60px;
-    background:radial-gradient(circle,rgba(0,102,204,.07) 0%,transparent 70%);}
+    background:radial-gradient(circle,rgba(44, 62, 80,.05) 0%,transparent 70%);}
   .blob2{width:340px;height:340px;bottom:40px;left:10%;
-    background:radial-gradient(circle,rgba(0,170,108,.06) 0%,transparent 70%);}
+    background:radial-gradient(circle,rgba(99, 132, 117,.05) 0%,transparent 70%);}
 
   .hero-content{position:relative;max-width:720px;}
   .hero-badge{
     display:inline-flex;align-items:center;gap:.5rem;
-    background:#e8f3ff;border:1px solid #b3d4f7;
+    background:#f0f4f8;border:1px solid #d1e0ec;
     border-radius:100px;padding:.35rem 1.1rem;
     font-size:.78rem;color:var(--accent);font-weight:600;
     letter-spacing:.04em;margin-bottom:1.6rem;
@@ -102,7 +102,7 @@
 
   .hero-sub{
     font-size:1.05rem;color:var(--text2);
-    max-width:500px;line-height:1.75;
+    max-width:560px;line-height:1.75;
     margin-bottom:2.2rem;font-weight:400;
     animation:fadeUp .5s .16s ease both;
   }
@@ -118,7 +118,7 @@
     transition:all .2s;font-family:inherit;border:none;
   }
   .btn-primary{background:var(--accent);color:#fff;}
-  .btn-primary:hover{background:#0055aa;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,102,204,.25);}
+  .btn-primary:hover{background:#1a252f;transform:translateY(-2px);box-shadow:0 8px 20px rgba(44, 62, 80,.20);}
   .btn-outline{background:#fff;color:var(--text);border:1.5px solid var(--border);}
   .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
 
@@ -132,7 +132,7 @@
     background:#fff;border:1.5px solid var(--border);
     border-radius:6px;padding:.35rem .8rem;
     font-size:.8rem;font-weight:500;color:var(--text2);
-    box-shadow:0 1px 4px rgba(0,0,0,.05);
+    box-shadow:0 1px 4px rgba(0,0,0,.03);
     transition:all .2s;
   }
   .tech-chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
@@ -169,7 +169,7 @@
     background:linear-gradient(90deg,var(--accent),var(--accent2));
     opacity:0;transition:opacity .25s;
   }
-  .project-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:#b3d4f7;}
+  .project-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:#d1e0ec;}
   .project-card:hover::after{opacity:1;}
   .card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:.5rem;}
   .card-icon{
@@ -178,8 +178,8 @@
     font-size:1.2rem;background:var(--bg2);flex-shrink:0;
   }
   .badge{font-size:.67rem;letter-spacing:.05em;text-transform:uppercase;padding:.2rem .6rem;border-radius:100px;font-weight:700;}
-  .badge-real{background:#e6f7f0;color:#00864d;border:1px solid #9fe5c4;}
-  .badge-demo{background:#e8f3ff;color:var(--accent);border:1px solid #b3d4f7;}
+  .badge-real{background:#eef6f2;color:#3b6b55;border:1px solid #b7d1c4;}
+  .badge-demo{background:#f0f4f8;color:var(--accent);border:1px solid #d1e0ec;}
   .card-title{font-size:1rem;font-weight:700;margin-bottom:.85rem;color:var(--text);line-height:1.3;}
   .card-section{margin-bottom:.65rem;}
   .card-section-label{font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;margin-bottom:.22rem;}
@@ -197,7 +197,7 @@
     border-radius:14px;padding:1.9rem;
     transition:all .25s;box-shadow:var(--shadow);
   }
-  .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#b3d4f7;}
+  .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#d1e0ec;}
   .service-icon{font-size:1.9rem;margin-bottom:.9rem;}
   .service-title{font-size:1.1rem;font-weight:700;margin-bottom:.42rem;color:var(--text);}
   .service-desc{font-size:.86rem;color:var(--text2);line-height:1.65;margin-bottom:1rem;}
@@ -212,20 +212,25 @@
 
   /* CERTIFICACIONES */
   #certificaciones{background:var(--bg2);}
-  .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+  .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
   .cert-card{
-    background:var(--surface);border:1.5px solid var(--border);
-    border-radius:12px;padding:1.3rem;
-    display:flex;align-items:center;gap:.9rem;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:1.2rem;
+    display:flex;align-items:center;gap:1rem;
     transition:all .22s;box-shadow:var(--shadow);
   }
   .cert-card:hover{border-color:var(--accent);transform:translateX(4px);box-shadow:var(--shadow-md);}
-  .cert-num{font-size:1.35rem;font-weight:800;color:var(--accent);line-height:1;white-space:nowrap;}
-  .cert-name{font-weight:700;font-size:.9rem;color:var(--text);}
-  .cert-area{font-size:.76rem;color:var(--text3);margin-top:.1rem;}
+  .cert-icon{
+    width:46px;height:46px;border-radius:8px;
+    background:var(--bg2);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:1.1rem;flex-shrink:0;
+  }
+  .cert-name{font-weight:700;font-size:.9rem;color:var(--text);line-height:1.2;margin-bottom:.2rem;}
+  .cert-area{font-size:.76rem;color:var(--text3);line-height:1.3;}
 
   /* CONTACTO */
-  #contacto{background:linear-gradient(135deg,#f0f4ff 0%,#f5f7fa 100%);text-align:center;}
+  #contacto{background:linear-gradient(135deg,#f8f9fa 0%,#f0f2f5 100%);text-align:center;}
   #contacto h2{margin-bottom:.7rem;}
   #contacto .section-desc{margin:0 auto 2rem;}
   .contact-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:2rem;}
@@ -276,21 +281,18 @@
   <div class="blob blob1"></div>
   <div class="blob blob2"></div>
   <div class="hero-content">
-    <div class="hero-badge"><span class="pulse"></span> Disponible para proyectos freelance</div>
-    <h1>Datos, BI &amp; <span class="highlight">Automatización</span> que generan resultados.</h1>
-    <p class="hero-sub">Consultor especializado en Power BI, SharePoint y n8n. Ayudo a empresas a tomar mejores decisiones con datos y a optimizar procesos bajo estándares ISO.</p>
+    <div class="hero-badge"><span class="pulse"></span> Especialista en ordenar lo inordenable</div>
+    <h1>Estandarización, Datos y <span class="highlight">Automatización.</span></h1>
+    <p class="hero-sub">Consultor especializado en estructurar procesos, implementar estándares internacionales y crear soluciones tecnológicas minimalistas que generan resultados medibles.</p>
     <div class="hero-cta">
       <a href="#proyectos" class="btn btn-primary">▶ Ver proyectos</a>
       <a href="https://calendly.com/TU-USUARIO" target="_blank" class="btn btn-outline">📅 Agendar llamada</a>
     </div>
     <div class="tech-stack">
-      <div class="tech-chip"><span class="dot" style="background:#F2C811;"></span>Power BI</div>
-      <div class="tech-chip"><span class="dot" style="background:#0078D4;"></span>SharePoint</div>
-      <div class="tech-chip"><span class="dot" style="background:#EA4B71;"></span>n8n</div>
-      <div class="tech-chip"><span class="dot" style="background:#0066cc;"></span>ISO 27001</div>
-      <div class="tech-chip"><span class="dot" style="background:#00aa6c;"></span>ISO 9001</div>
-      <div class="tech-chip"><span class="dot" style="background:#6750e8;"></span>ISO 20000</div>
-      <div class="tech-chip"><span class="dot" style="background:#d97706;"></span>ISO 52001</div>
+      <div class="tech-chip"><span class="dot" style="background:#2c3e50;"></span>Gobierno TI</div>
+      <div class="tech-chip"><span class="dot" style="background:#638475;"></span>Gestión de Proyectos</div>
+      <div class="tech-chip"><span class="dot" style="background:#ea4b71;"></span>n8n</div>
+      <div class="tech-chip"><span class="dot" style="background:#0078d4;"></span>Sistemas de Calidad</div>
     </div>
   </div>
 </section>
@@ -371,7 +373,7 @@
     </div>
     <div class="service-card">
       <div class="service-icon">🏆</div>
-      <div class="service-title">ISO & Gestión de Calidad</div>
+      <div class="service-title">ISO & gestión de calidad</div>
       <p class="service-desc">Apoyo técnico para implementación y mantenimiento de sistemas de gestión certificables.</p>
       <ul class="service-items">
         <li>ISO 27001 · 9001 · 52001 · 20000</li>
@@ -387,13 +389,18 @@
   <div class="reveal">
     <span class="section-label">Credenciales</span>
     <h2>Certificaciones</h2>
-    <p class="section-desc">Conocimiento formal respaldado en estándares internacionales.</p>
+    <p class="section-desc">Conocimiento formal respaldado por marcos de trabajo y estándares internacionales.</p>
   </div>
   <div class="certs-grid reveal">
-    <div class="cert-card"><div class="cert-num">27001</div><div><div class="cert-name">ISO 27001</div><div class="cert-area">Seguridad de la Información</div></div></div>
-    <div class="cert-card"><div class="cert-num">9001</div><div><div class="cert-name">ISO 9001</div><div class="cert-area">Gestión de Calidad</div></div></div>
-    <div class="cert-card"><div class="cert-num">52001</div><div><div class="cert-name">ISO 52001</div><div class="cert-area">Gestión de Energía</div></div></div>
-    <div class="cert-card"><div class="cert-num">20000</div><div><div class="cert-name">ISO 20000</div><div class="cert-area">Gestión de Servicios TI</div></div></div>
+    <div class="cert-card"><div class="cert-icon">PM</div><div><div class="cert-name">Project Management Professional (PMP)</div><div class="cert-area">Project Management Institute</div></div></div>
+    <div class="cert-card"><div class="cert-icon">CM</div><div><div class="cert-name">CMMI Certified Associate</div><div class="cert-area">ISACA</div></div></div>
+    <div class="cert-card"><div class="cert-icon">27K</div><div><div class="cert-name">ISO/IEC 27001:2022</div><div class="cert-area">Information Security Associate™</div></div></div>
+    <div class="cert-card"><div class="cert-icon">20K</div><div><div class="cert-name">ISO/IEC 20000</div><div class="cert-area">IT Service Management Associate™</div></div></div>
+    <div class="cert-card"><div class="cert-icon">9K</div><div><div class="cert-name">ISO 9001</div><div class="cert-area">Quality Management Systems Associate™</div></div></div>
+    <div class="cert-card"><div class="cert-icon">SM</div><div><div class="cert-name">Professional Scrum Master™ I</div><div class="cert-area">Scrum.org</div></div></div>
+    <div class="cert-card"><div class="cert-icon">CB</div><div><div class="cert-name">COBIT 5 Foundation</div><div class="cert-area">ISACA</div></div></div>
+    <div class="cert-card"><div class="cert-icon">IT</div><div><div class="cert-name">ITIL Foundation 4</div><div class="cert-area">Axelos</div></div></div>
+    <div class="cert-card"><div class="cert-icon">MC</div><div><div class="cert-name">MCP</div><div class="cert-area">Microsoft Certified Professional</div></div></div>
   </div>
 </section>
 
@@ -401,20 +408,20 @@
   <div class="reveal">
     <span class="section-label">Hablemos</span>
     <h2>¿Tienes un proyecto en mente?</h2>
-    <p class="section-desc">Agenda una llamada de 30 minutos sin costo para explorar cómo puedo ayudarte.</p>
-    <a href="https://calendly.com/TU-USUARIO" target="_blank" class="btn btn-primary" style="font-size:.97rem;padding:.88rem 2rem;">
-      📅 Agendar llamada gratuita
+    <p class="section-desc">Programa una llamada de 30 minutos sin costo para explorar cómo puedo ayudarte.</p>
+    <a href="https://calendly.com/dagarciahz/30min" target="_blank" class="btn btn-primary" style="font-size:.97rem;padding:.88rem 2rem;">
+      📅 Programa llamada gratuita
     </a>
     <div class="contact-cards">
-      <a href="mailto:TU@EMAIL.COM" class="contact-item">✉️ TU@EMAIL.COM</a>
-      <a href="https://linkedin.com/in/TU-PERFIL" target="_blank" class="contact-item">💼 LinkedIn</a>
+      <a href="mailto:TU@EMAIL.COM" class="contact-item">✉️ dagarciahz@gmail.com</a>
+      <a href="https://linkedin.com/in/dagarh" target="_blank" class="contact-item">💼 LinkedIn</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo">dave.</div>
-  <div class="footer-text">© 2026 · Consultor de Datos, BI & Calidad · México</div>
+  <div class="footer-text">© 2026 · Especialista en procesos y gobierno TI · Pachuca, Hidalgo</div>
 </footer>
 
 <script>
