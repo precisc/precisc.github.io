@@ -289,6 +289,25 @@
     text-decoration: none;
     color: inherit;
 }
+
+/* Reseteo para que el enlace no rompa el Grid */
+.card-link {
+  text-decoration: none; /* Quita el subrayado */
+  color: inherit;       /* Mantiene tus colores originales */
+  display: block;       /* Hace que el enlace se comporte como un bloque */
+  height: 100%;         /* Asegura que ocupe todo el espacio de la celda */
+}
+
+/* Mueve el efecto de hover al enlace para que sea más fluido */
+.card-link:hover .project-card {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: #d1e0ec;
+}
+
+.card-link:hover .project-card::after {
+  opacity: 1;
+}
   
 </style>
 </head>
