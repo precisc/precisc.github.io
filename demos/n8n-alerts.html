@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precisc | Workflow automation semo</title>
+    <title>Precisc | Workflow automation demo</title>
     
     <!-- Google Fonts: Nunito -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +45,7 @@
         body {
             background-color: theme('colors.precisc-bg');
             color: theme('colors.precisc-blue');
-            overflow: hidden;
+            /* Se eliminó overflow: hidden para permitir hacer scroll hacia el footer */
         }
         
         /* Custom Scrollbar */
@@ -102,53 +102,167 @@
         /* Modal Transitions */
         .modal-enter { opacity: 0; transform: scale(0.95); }
         .modal-enter-active { opacity: 1; transform: scale(1); transition: all 0.4s ease-out; }
+
+        /* --- ESTILOS AGREGADOS DE TU PÁGINA PRINCIPAL --- */
+        :root {
+            --bg: #fafafa;
+            --bg2: #f0f2f5;
+            --surface: #ffffff;
+            --border: #e1e6ed;
+            --accent: #2c3e50;
+            --accent2: #638475;
+            --text: #1a1f24;
+            --text2: #4a5568;
+            --text3: #718096;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 6%;
+            background: rgba(255,255,255,.93);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 10px rgba(0,0,0,.03);
+            font-family: 'Segoe UI', 'Nunito', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--accent); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+        .nav-links a {
+            color: var(--text2); text-decoration: none;
+            font-size: .85rem; font-weight: 600;
+            letter-spacing: .03em; text-transform: uppercase;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        #contacto {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
+            text-align: center; padding: 88px 6%;
+            font-family: 'Segoe UI', 'Nunito', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .section-label {
+            display: inline-flex; align-items: center; gap: .5rem;
+            font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+            color: var(--accent); font-weight: 700; margin-bottom: .8rem;
+        }
+        .section-label::before { content: ''; width: .9rem; height: 2px; background: var(--accent); border-radius: 2px; }
+        #contacto h2 {
+            font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800;
+            letter-spacing: -.015em; margin-bottom: .7rem; line-height: 1.2; color: var(--text);
+        }
+        .section-desc { color: var(--text2); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; font-size: .95rem; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .88rem 2rem; border-radius: 8px;
+            font-size: .97rem; font-weight: 600;
+            cursor: pointer; text-decoration: none;
+            background: var(--accent); color: #fff;
+            transition: all .2s; border: none;
+        }
+        .btn-primary:hover { background: #1a252f; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(44, 62, 80,.20); }
+        .contact-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        .contact-item {
+            background: #fff; border: 1.5px solid var(--border); border-radius: 10px;
+            padding: .85rem 1.3rem; display: flex; align-items: center; gap: .55rem;
+            font-size: .88rem; color: var(--text2); text-decoration: none;
+            transition: all .2s; box-shadow: 0 2px 16px rgba(0,0,0,.04); font-weight: 500;
+        }
+        .contact-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+        footer {
+            background: #fff; border-top: 1px solid var(--border);
+            padding: 1.6rem 6%; display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem;
+            font-family: 'Segoe UI', 'Nunito', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .footer-logo { font-size: 1.1rem; font-weight: 800; color: var(--accent); }
+        .footer-text { font-size: .78rem; color: var(--text3); }
     </style>
 </head>
-<body class="h-screen w-screen flex flex-col text-sm">
+<body class="w-screen overflow-x-hidden text-sm flex flex-col">
 
-    <!-- Header -->
-    <header class="bg-precisc-card h-16 border-b border-precisc-border flex items-center justify-between px-6 shadow-sm z-20 flex-shrink-0 relative">
-        <div class="flex items-center space-x-4">
-            <div class="bg-precisc-blue text-white font-extrabold text-lg px-2.5 py-0.5 rounded-md tracking-tighter">
-                dave.
-            </div>
-            <div class="h-5 w-px bg-precisc-border"></div>
-            <h1 class="text-lg font-semibold text-precisc-blue">Precisc <span class="font-light text-gray-400">| Automation</span></h1>
-        </div>
+    <!-- NAV PRINCIPAL AGREGADO -->
+    <nav>
+        <a href="../index.html" class="nav-logo">dave.</a>
+        <ul class="nav-links">
+          <li><a href="../index.html#proyectos">Proyectos</a></li>
+          <li><a href="../index.html#servicios">Servicios</a></li>
+          <li><a href="../index.html#certificaciones">Certificaciones</a></li>
+          <li><a href="https://www.precisc.com/blog">Blog</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- WRAPPER DE LA APLICACIÓN (Mantiene el layout original del n8n intacto ocupando el alto visible) -->
+    <div class="w-full h-[calc(100vh-73px)] mt-[73px] flex flex-col border-b border-precisc-border relative z-0">
         
-        <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-blue hover:bg-slate-800 text-white px-5 py-2 rounded-lg font-semibold transition-all shadow-md flex items-center space-x-2">
-            <i data-lucide="play" class="w-4 h-4"></i>
-            <span>Ejecutar Workflow</span>
-        </button>
-    </header>
-
-    <!-- Main Workspace -->
-    <div class="flex-1 flex overflow-hidden">
-        
-        <!-- Canvas Area -->
-        <main class="flex-1 relative overflow-auto canvas-bg" id="canvas-container">
-            <div class="min-w-[1600px] min-h-[800px] w-full h-full relative" id="canvas">
-                <!-- SVG Container for connection lines -->
-                <svg id="svg-layer" class="absolute inset-0 pointer-events-none w-full h-full z-0"></svg>
-                
-                <!-- Nodes will be injected here by JS -->
-            </div>
-        </main>
-
-        <!-- Right Panel (Inspector) -->
-        <aside class="w-80 bg-precisc-card border-l border-precisc-border flex flex-col shadow-scandi z-10 flex-shrink-0 transition-transform duration-300" id="inspector">
-            <div class="p-6 border-b border-precisc-border bg-gray-50/50">
-                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Inspector de nodo</h2>
+        <!-- Header original de la App -->
+        <header class="bg-precisc-card h-16 border-b border-precisc-border flex items-center justify-between px-6 shadow-sm z-20 flex-shrink-0 relative">
+            <div class="flex items-center space-x-4">
+                <div class="bg-precisc-blue text-white font-extrabold text-lg px-2.5 py-0.5 rounded-md tracking-tighter">
+                    dave.
+                </div>
+                <div class="h-5 w-px bg-precisc-border"></div>
+                <h1 class="text-lg font-semibold text-precisc-blue">Precisc <span class="font-light text-gray-400">| Automation</span></h1>
             </div>
             
-            <div id="inspector-content" class="p-6 flex flex-col h-full items-center justify-center text-center text-gray-400">
-                <i data-lucide="mouse-pointer-click" class="w-8 h-8 mb-3 opacity-50"></i>
-                <p>Selecciona un nodo en el canvas para ver sus detalles y configuración técnica.</p>
-            </div>
-        </aside>
-    </div>
+            <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-blue hover:bg-slate-800 text-white px-5 py-2 rounded-lg font-semibold transition-all shadow-md flex items-center space-x-2">
+                <i data-lucide="play" class="w-4 h-4"></i>
+                <span>Ejecutar Workflow</span>
+            </button>
+        </header>
 
-    <!-- Final Report Modal -->
+        <!-- Main Workspace original de la App -->
+        <div class="flex-1 flex overflow-hidden">
+            
+            <!-- Canvas Area -->
+            <main class="flex-1 relative overflow-auto canvas-bg" id="canvas-container">
+                <div class="min-w-[1600px] min-h-[800px] w-full h-full relative" id="canvas">
+                    <!-- SVG Container for connection lines -->
+                    <svg id="svg-layer" class="absolute inset-0 pointer-events-none w-full h-full z-0"></svg>
+                    
+                    <!-- Nodes will be injected here by JS -->
+                </div>
+            </main>
+
+            <!-- Right Panel (Inspector) -->
+            <aside class="w-80 bg-precisc-card border-l border-precisc-border flex flex-col shadow-scandi z-10 flex-shrink-0 transition-transform duration-300" id="inspector">
+                <div class="p-6 border-b border-precisc-border bg-gray-50/50">
+                    <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Inspector de nodo</h2>
+                </div>
+                
+                <div id="inspector-content" class="p-6 flex flex-col h-full items-center justify-center text-center text-gray-400">
+                    <i data-lucide="mouse-pointer-click" class="w-8 h-8 mb-3 opacity-50"></i>
+                    <p>Selecciona un nodo en el canvas para ver sus detalles y configuración técnica.</p>
+                </div>
+            </aside>
+        </div>
+    </div> <!-- FIN DEL WRAPPER DE LA APLICACIÓN -->
+
+    <!-- SECCIÓN CONTACTO AGREGADA -->
+    <section id="contacto">
+        <div>
+            <span class="section-label">Hablemos</span>
+            <h2>¿Tienes un proyecto en mente?</h2>
+            <p class="section-desc">Programa una llamada de 30 minutos sin costo para explorar cómo puedo ayudarte.</p>
+            <a href="https://calendly.com/dagarciahz/30min" target="_blank" class="btn-primary">
+              📅 Programa llamada gratuita
+            </a>
+            <div class="contact-cards">
+              <a href="mailto:dagarciahz@gmail.com" class="contact-item">✉️ dagarciahz@gmail.com</a>
+              <a href="https://linkedin.com/in/dagarh" target="_blank" class="contact-item">💼 LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER AGREGADO -->
+    <footer>
+        <div class="footer-logo">dave.</div>
+        <div class="footer-text">© 2026 · Especialista en procesos y gobierno TI · Pachuca, Hidalgo</div>
+    </footer>
+
+    <!-- Final Report Modal Original (No se modifica) -->
     <div id="report-modal" class="fixed inset-0 bg-precisc-blue/30 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
         <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto modal-enter border border-precisc-border">
             
@@ -223,6 +337,7 @@
         </div>
     </div>
 
+    <!-- LÓGICA ORIGINAL INTACTA -->
     <script>
         // --- Workflow Configuration Data ---
         const nodesData = [
