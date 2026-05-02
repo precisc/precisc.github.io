@@ -49,7 +49,7 @@
         body {
             background-color: theme('colors.precisc-bg');
             color: theme('colors.precisc-blue');
-            overflow: hidden;
+            /* overflow: hidden; - ELIMINADO PARA PERMITIR SCROLL */
         }
 
         /* Canvas Pattern */
@@ -113,59 +113,173 @@
         #report-modal { transition: opacity 0.3s ease; }
         .modal-content { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform: scale(0.95); opacity: 0; }
         #report-modal.open .modal-content { transform: scale(1); opacity: 1; }
+
+        /* --- ESTILOS AGREGADOS DE TU PÁGINA PRINCIPAL --- */
+        :root {
+            --bg: #fafafa;
+            --bg2: #f0f2f5;
+            --surface: #ffffff;
+            --border: #e1e6ed;
+            --accent: #2c3e50;
+            --accent2: #638475;
+            --text: #1a1f24;
+            --text2: #4a5568;
+            --text3: #718096;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 6%;
+            background: rgba(255,255,255,.93);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 10px rgba(0,0,0,.03);
+            font-family: 'Segoe UI', 'Nunito', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--accent); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+        .nav-links a {
+            color: var(--text2); text-decoration: none;
+            font-size: .85rem; font-weight: 600;
+            letter-spacing: .03em; text-transform: uppercase;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        #contacto {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
+            text-align: center; padding: 88px 6%;
+            font-family: 'Segoe UI', 'Nunito', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .section-label {
+            display: inline-flex; align-items: center; gap: .5rem;
+            font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+            color: var(--accent); font-weight: 700; margin-bottom: .8rem;
+        }
+        .section-label::before { content: ''; width: .9rem; height: 2px; background: var(--accent); border-radius: 2px; }
+        #contacto h2 {
+            font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800;
+            letter-spacing: -.015em; margin-bottom: .7rem; line-height: 1.2; color: var(--text);
+        }
+        .section-desc { color: var(--text2); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; font-size: .95rem; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .88rem 2rem; border-radius: 8px;
+            font-size: .97rem; font-weight: 600;
+            cursor: pointer; text-decoration: none;
+            background: var(--accent); color: #fff;
+            transition: all .2s; border: none;
+        }
+        .btn-primary:hover { background: #1a252f; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(44, 62, 80,.20); }
+        .contact-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        .contact-item {
+            background: #fff; border: 1.5px solid var(--border); border-radius: 10px;
+            padding: .85rem 1.3rem; display: flex; align-items: center; gap: .55rem;
+            font-size: .88rem; color: var(--text2); text-decoration: none;
+            transition: all .2s; box-shadow: 0 2px 16px rgba(0,0,0,.04); font-weight: 500;
+        }
+        .contact-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+        footer {
+            background: #fff; border-top: 1px solid var(--border);
+            padding: 1.6rem 6%; display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem;
+            font-family: 'Segoe UI', 'Nunito', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .footer-logo { font-size: 1.1rem; font-weight: 800; color: var(--accent); }
+        .footer-text { font-size: .78rem; color: var(--text3); }
     </style>
 </head>
-<body class="h-screen w-screen flex flex-col text-sm">
+<body class="w-screen overflow-x-hidden text-sm flex flex-col">
 
-    <!-- Header -->
-    <header class="bg-precisc-card h-16 border-b border-precisc-border flex items-center justify-between px-6 z-20 shrink-0 shadow-sm relative">
-        <div class="flex items-center space-x-4">
-            <div class="text-precisc-blue font-extrabold text-xl tracking-tighter flex items-center">
-                <i data-lucide="cpu" class="w-6 h-6 mr-2 text-precisc-green"></i> Precisc
-            </div>
-            <div class="h-5 w-px bg-precisc-border"></div>
-            <div>
-                <h1 class="text-sm font-bold text-precisc-blue">Auditoría de viajes con inteligencia artificial</h1>
-                <p class="text-xs text-gray-500">Flujo activo de análisis de viáticos y combustible</p>
-            </div>
-        </div>
+    <!-- NAV PRINCIPAL AGREGADO -->
+    <nav>
+        <a href="../index.html" class="nav-logo">dave.</a>
+        <ul class="nav-links">
+          <li><a href="../index.html#proyectos">Proyectos</a></li>
+          <li><a href="../index.html#servicios">Servicios</a></li>
+          <li><a href="../index.html#certificaciones">Certificaciones</a></li>
+          <li><a href="https://www.precisc.com/blog">Blog</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- WRAPPER DE LA APLICACIÓN -->
+    <div class="w-full h-[calc(100vh-73px)] mt-[73px] flex flex-col border-b border-precisc-border relative z-0">
         
-        <div class="flex items-center space-x-4">
-            <span class="text-xs text-gray-400 font-semibold bg-gray-100 px-3 py-1 rounded-full">Inactivo</span>
-            <button id="btn-execute" onclick="executeWorkflow()" class="bg-precisc-green hover:bg-[#527163] text-white px-5 py-2 rounded-lg font-bold transition-all shadow-md flex items-center space-x-2">
-                <i data-lucide="play" class="w-4 h-4"></i>
-                <span>Ejecutar Análisis</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Main Workspace -->
-    <div class="flex-1 flex overflow-hidden">
-        
-        <!-- Canvas (n8n Simulation) -->
-        <main class="flex-1 relative overflow-auto canvas-bg" id="canvas-container">
-            <div class="min-w-[1400px] min-h-[800px] w-full h-full relative" id="canvas">
-                <!-- SVG Layer -->
-                <svg id="svg-layer" class="absolute inset-0 w-full h-full pointer-events-none z-0"></svg>
-                <!-- Nodes injected by JS -->
-            </div>
-        </main>
-
-        <!-- Sidebar Inspector -->
-        <aside class="w-80 bg-white border-l border-precisc-border flex flex-col z-10 shrink-0 shadow-xl relative" id="inspector">
-            <div class="h-12 border-b border-precisc-border bg-gray-50 flex items-center px-4">
-                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Inspector de nodo</span>
-            </div>
-            <div id="inspector-content" class="flex-1 overflow-y-auto p-6 flex flex-col text-gray-500">
-                <div class="text-center mt-20 opacity-50">
-                    <i data-lucide="mouse-pointer-click" class="w-12 h-12 mx-auto mb-4"></i>
-                    <p>Selecciona un nodo para ver su configuración o el prompt de IA.</p>
+        <!-- Header Original -->
+        <header class="bg-precisc-card h-16 border-b border-precisc-border flex items-center justify-between px-6 z-20 shrink-0 shadow-sm relative">
+            <div class="flex items-center space-x-4">
+                <div class="text-precisc-blue font-extrabold text-xl tracking-tighter flex items-center">
+                    <i data-lucide="cpu" class="w-6 h-6 mr-2 text-precisc-green"></i> Precisc
+                </div>
+                <div class="h-5 w-px bg-precisc-border"></div>
+                <div>
+                    <h1 class="text-sm font-bold text-precisc-blue">Auditoría de viajes con inteligencia artificial</h1>
+                    <p class="text-xs text-gray-500">Flujo activo de análisis de viáticos y combustible</p>
                 </div>
             </div>
-        </aside>
-    </div>
+            
+            <div class="flex items-center space-x-4">
+                <span class="text-xs text-gray-400 font-semibold bg-gray-100 px-3 py-1 rounded-full">Inactivo</span>
+                <button id="btn-execute" onclick="executeWorkflow()" class="bg-precisc-green hover:bg-[#527163] text-white px-5 py-2 rounded-lg font-bold transition-all shadow-md flex items-center space-x-2">
+                    <i data-lucide="play" class="w-4 h-4"></i>
+                    <span>Ejecutar Análisis</span>
+                </button>
+            </div>
+        </header>
 
-    <!-- Final Report Modal -->
+        <!-- Main Workspace Original -->
+        <div class="flex-1 flex overflow-hidden">
+            
+            <!-- Canvas (n8n Simulation) -->
+            <main class="flex-1 relative overflow-auto canvas-bg" id="canvas-container">
+                <div class="min-w-[1400px] min-h-[800px] w-full h-full relative" id="canvas">
+                    <!-- SVG Layer -->
+                    <svg id="svg-layer" class="absolute inset-0 w-full h-full pointer-events-none z-0"></svg>
+                    <!-- Nodes injected by JS -->
+                </div>
+            </main>
+
+            <!-- Sidebar Inspector -->
+            <aside class="w-80 bg-white border-l border-precisc-border flex flex-col z-10 shrink-0 shadow-xl relative" id="inspector">
+                <div class="h-12 border-b border-precisc-border bg-gray-50 flex items-center px-4">
+                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Inspector de nodo</span>
+                </div>
+                <div id="inspector-content" class="flex-1 overflow-y-auto p-6 flex flex-col text-gray-500">
+                    <div class="text-center mt-20 opacity-50">
+                        <i data-lucide="mouse-pointer-click" class="w-12 h-12 mx-auto mb-4"></i>
+                        <p>Selecciona un nodo para ver su configuración o el prompt de IA.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div> <!-- FIN DEL WRAPPER -->
+
+    <!-- SECCIÓN CONTACTO AGREGADA -->
+    <section id="contacto">
+        <div>
+            <span class="section-label">Hablemos</span>
+            <h2>¿Tienes un proyecto en mente?</h2>
+            <p class="section-desc">Programa una llamada de 30 minutos sin costo para explorar cómo puedo ayudarte.</p>
+            <a href="https://calendly.com/dagarciahz/30min" target="_blank" class="btn-primary">
+              📅 Programa llamada gratuita
+            </a>
+            <div class="contact-cards">
+              <a href="mailto:dagarciahz@gmail.com" class="contact-item">✉️ dagarciahz@gmail.com</a>
+              <a href="https://linkedin.com/in/dagarh" target="_blank" class="contact-item">💼 LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER AGREGADO -->
+    <footer>
+        <div class="footer-logo">dave.</div>
+        <div class="footer-text">© 2026 · Especialista en procesos y gobierno TI · Pachuca, Hidalgo</div>
+    </footer>
+
+    <!-- Final Report Modal Original -->
     <div id="report-modal" class="fixed inset-0 bg-precisc-blue/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6 opacity-0">
         <div class="modal-content bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col border border-precisc-border">
             
@@ -256,6 +370,7 @@
         </div>
     </div>
 
+    <!-- Lógica JS Original -->
     <script>
         // --- Workflow Definition ---
         const nodesData = [
