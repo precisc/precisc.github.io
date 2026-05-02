@@ -272,6 +272,24 @@
 #articulos .project-card:hover {
     background-color: #fcfcfc;
 }  
+
+
+/* Mantiene el diseño limpio y minimalista de Precisc */
+.project-card-link {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.project-card-link:hover {
+    transform: translateY(-5px); /* Efecto sutil al pasar el mouse */
+}
+
+/* Evita que el texto de la tarjeta cambie a azul o se subraye */
+.project-card-link, .project-card-link:hover, .project-card-link:visited {
+    text-decoration: none;
+    color: inherit;
+}
+  
 </style>
 </head>
 <body>
