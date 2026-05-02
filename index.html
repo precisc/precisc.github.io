@@ -308,6 +308,21 @@
 .card-link:hover .project-card::after {
   opacity: 1;
 }
+
+.project-card {
+  display: block;         /* Crucial para que el enlace ocupe todo el espacio */
+  text-decoration: none;  /* Quita el subrayado azul */
+  color: inherit;         /* Mantiene tus colores de texto */
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.6rem;
+  transition: all .25s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  height: 100%;           /* Hace que todas las tarjetas midan lo mismo */
+}
   
 </style>
 </head>
