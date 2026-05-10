@@ -231,17 +231,20 @@
 
                 <!-- Campos y Botón agrupados -->
                 <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-                    <input type="text" id="demo-nombre" placeholder="Tu nombre" 
-                        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[160px] md:w-[200px]" required>
-                        
-                    <input type="email" id="demo-correo" placeholder="tu@correo.com" 
-                        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[180px] md:w-[220px]" required>
-                    
-                    <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-green hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold transition-all shadow-md flex items-center justify-center space-x-2 w-full sm:w-auto min-w-[140px]">
-                        <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-                        <span>Probar Demo</span>
-                    </button>
-                </div>
+    <input type="text" id="demo-nombre" placeholder="Tu nombre" 
+        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[130px] md:w-[160px]" required>
+        
+    <input type="email" id="demo-correo" placeholder="tu@correo.com" 
+        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[150px] md:w-[180px]" required>
+
+    <input type="tel" id="demo-telefono" placeholder="WhatsApp (Ej: 521...)" 
+        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[150px] md:w-[180px]" required>
+    
+    <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-green hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold transition-all shadow-md flex items-center justify-center space-x-2 w-full sm:w-auto min-w-[140px]">
+        <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+        <span>Probar Demo</span>
+    </button>
+</div>
             </div>
         </header>
 
@@ -506,47 +509,48 @@
         const delay = ms => new Promise(res => setTimeout(res, ms));
 
         // LÓGICA DE EJECUCIÓN Y CONEXIÓN A N8N
-        async function executeWorkflow() {
-            if (isRunning) return;
+async function executeWorkflow() {
+    if (isRunning) return;
 
-            const inputNombre = document.getElementById('demo-nombre');
-            const inputCorreo = document.getElementById('demo-correo');
+    const inputNombre = document.getElementById('demo-nombre');
+    const inputCorreo = document.getElementById('demo-correo');
+    const inputTelefono = document.getElementById('demo-telefono'); // Capturamos el nuevo input
 
-            // 1. Validación de los campos
-            if (!inputNombre.value || !inputCorreo.value) {
-                inputNombre.parentElement.classList.add('border-red-400');
-                inputCorreo.parentElement.classList.add('border-red-400');
-                alert("Para enviarte el reporte generado, por favor ingresa tu nombre y correo.");
-                return;
-            }
+    // 1. Validación de los campos (Agregamos el teléfono)
+    if (!inputNombre.value || !inputCorreo.value || !inputTelefono.value) {
+        inputNombre.parentElement.classList.add('border-red-400');
+        inputCorreo.parentElement.classList.add('border-red-400');
+        inputTelefono.parentElement.classList.add('border-red-400');
+        alert("Para enviarte el reporte, ingresa tu nombre, correo y WhatsApp con código de país.");
+        return;
+    }
 
-            // Quita las alertas visuales si están correctos
-            inputNombre.parentElement.classList.remove('border-red-400');
-            inputCorreo.parentElement.classList.remove('border-red-400');
+    isRunning = true;
+    
+    const btn = document.getElementById('btn-run');
+    btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin fill-current"></i><span>Ejecutando...</span>`;
+    btn.classList.add('opacity-70', 'cursor-not-allowed');
+    lucide.createIcons();
 
-            isRunning = true;
-            
-            const btn = document.getElementById('btn-run');
-            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin fill-current"></i><span>Ejecutando...</span>`;
-            btn.classList.add('opacity-70', 'cursor-not-allowed');
-            lucide.createIcons();
+    // 2. Envío de datos al webhook de n8n incluyendo el TELEFONO
+    const webhookUrl = 'https://n8n.expressenop.com/webhook/demo-seguridad'; 
+    
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            nombre: inputNombre.value, 
+            correo: inputCorreo.value,
+            telefono: inputTelefono.value, // <--- Este dato llegará a n8n
+            riesgo: "12%",
+            controles: "93/114",
+            avance: "81.5%",
+            fecha: new Date().toLocaleDateString('es-ES')
+        })
+    }).catch(error => console.error('Error enviando a n8n:', error));
 
-            // 2. Envío de datos al webhook de n8n
-            const webhookUrl = 'https://www.n8n.expressenop.com/webhook/demo-seguridad'; 
-
-fetch(webhookUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-        nombre: inputNombre.value, 
-        correo: inputCorreo.value,
-        riesgo: "12%",            // El dato que sale en el popup
-        controles: "93/114",      // El dato que sale en el popup
-        avance: "81.5%",          // El dato que sale en el popup
-        fecha: new Date().toLocaleDateString('es-ES') // Fecha actual
-    })
-}).catch(error => console.error('Error enviando a n8n:', error));
-
+    // ... (El resto de la animación de los nodos sigue igual)
+        
             // 3. Inicio de la Animación visual
             resetWorkflowUI();
 
