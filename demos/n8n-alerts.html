@@ -532,16 +532,20 @@
             lucide.createIcons();
 
             // 2. Envío de datos al webhook de n8n
-            const webhookUrl = 'https://www.n8n.expressenop.com/webhook/demo-seguridad'; 
-            
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    nombre: inputNombre.value, 
-                    correo: inputCorreo.value 
-                })
-            }).catch(error => console.error('Error enviando a n8n:', error));
+            const webhookUrl = 'https://n8n.expressenop.com/webhook/demo-seguridad'; 
+
+fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+        nombre: inputNombre.value, 
+        correo: inputCorreo.value,
+        riesgo: "12%",            // El dato que sale en el popup
+        controles: "93/114",      // El dato que sale en el popup
+        avance: "81.5%",          // El dato que sale en el popup
+        fecha: new Date().toLocaleDateString('es-ES') // Fecha actual
+    })
+}).catch(error => console.error('Error enviando a n8n:', error));
 
             // 3. Inicio de la Animación visual
             resetWorkflowUI();
