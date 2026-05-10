@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K2XHQMXQQZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K2XHQMXQQZ');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2XHQMXQQZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2XHQMXQQZ');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +54,6 @@
         body {
             background-color: theme('colors.precisc-bg');
             color: theme('colors.precisc-blue');
-            /* Se eliminó overflow: hidden para permitir hacer scroll hacia el footer */
         }
         
         /* Custom Scrollbar */
@@ -98,7 +96,7 @@
 
         /* SVG Line Pulse Animation */
         .svg-path-base {
-            stroke: #cbd5e1; /* Gris más oscuro para que la línea destaque más */
+            stroke: #cbd5e1; 
             stroke-width: 4;
             fill: none;
         }
@@ -113,7 +111,7 @@
         .modal-enter { opacity: 0; transform: scale(0.95); }
         .modal-enter-active { opacity: 1; transform: scale(1); transition: all 0.4s ease-out; }
 
-        /* --- ESTILOS AGREGADOS DE TU PÁGINA PRINCIPAL --- */
+        /* Estilos de tu página principal */
         :root {
             --bg: #fafafa;
             --bg2: #f0f2f5;
@@ -192,10 +190,10 @@
 </head>
 <body class="w-screen overflow-x-hidden text-sm flex flex-col">
 
-    <!-- NAV PRINCIPAL AGREGADO -->
+    <!-- NAV PRINCIPAL -->
     <nav>
         <a href="../index.html" class="nav-logo">dave.</a>
-        <ul class="nav-links">
+        <ul class="nav-links hidden md:flex">
           <li><a href="../index.html#proyectos">Proyectos</a></li>
           <li><a href="../index.html#servicios">Servicios</a></li>
           <li><a href="../index.html#certificaciones">Certificaciones</a></li>
@@ -204,60 +202,64 @@
         </ul>
     </nav>
 
-    <!-- WRAPPER DE LA APLICACIÓN (Mantiene el layout original del n8n intacto ocupando el alto visible) -->
+    <!-- WRAPPER DE LA APLICACIÓN -->
     <div class="w-full h-[calc(100vh-73px)] mt-[73px] flex flex-col border-b border-precisc-border relative z-0">
         
-        <!-- Header original de la App -->
-        <!-- Header modificado con inputs -->
-<header class="bg-precisc-card h-16 border-b border-precisc-border flex items-center justify-between px-6 shadow-sm z-20 flex-shrink-0 relative">
-    <div class="flex items-center space-x-4">
-        <div class="bg-precisc-blue text-white font-extrabold text-lg px-2.5 py-0.5 rounded-md tracking-tighter">
-            dave.
-        </div>
-        <div class="h-5 w-px bg-precisc-border"></div>
-        <h1 class="text-lg font-semibold text-precisc-blue">Precisc <span class="font-light text-gray-400">| Automation</span></h1>
-    </div>
-    
-    <!-- NUEVO: Contenedor de Inputs y Botón -->
-    <div class="flex items-center space-x-3">
-        <input type="text" id="demo-nombre" placeholder="Tu nombre" class="px-3 py-1.5 border border-precisc-border rounded-md text-sm outline-none focus:border-precisc-blue" required>
-        <input type="email" id="demo-correo" placeholder="tu@correo.com" class="px-3 py-1.5 border border-precisc-border rounded-md text-sm outline-none focus:border-precisc-blue" required>
-        
-        <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-blue hover:bg-slate-800 text-white px-5 py-2 rounded-lg font-semibold transition-all shadow-md flex items-center space-x-2">
-            <i data-lucide="play" class="w-4 h-4"></i>
-            <span>Ejecutar Workflow</span>
-        </button>
-    </div>
-</header>
+        <!-- HEADER MODIFICADO CON CAMPOS INTEGRADOS -->
+        <header class="bg-precisc-card h-20 border-b border-precisc-border flex items-center justify-between px-8 shadow-sm z-20 flex-shrink-0 relative overflow-x-auto">
+            <div class="flex items-center space-x-4 min-w-max">
+                <div class="bg-precisc-blue text-white font-extrabold text-xl px-3 py-1 rounded-md tracking-tighter">
+                    dave.
+                </div>
+                <div class="h-6 w-px bg-precisc-border"></div>
+                <h1 class="text-lg font-semibold text-precisc-blue">Precisc <span class="font-light text-gray-400">| Demo</span></h1>
+            </div>
+            
+            <div class="flex-1 flex justify-center px-6 md:px-10 min-w-[400px]">
+                <div class="flex items-center space-x-2 bg-gray-100 p-1.5 rounded-xl border border-precisc-border shadow-inner w-full max-w-2xl">
+                    <div class="flex items-center bg-white rounded-lg px-3 py-1.5 flex-1 border border-transparent focus-within:border-precisc-green transition-all">
+                        <i data-lucide="user" class="w-4 h-4 text-gray-400 mr-2"></i>
+                        <input type="text" id="demo-nombre" placeholder="Nombre completo" 
+                            class="bg-transparent text-sm outline-none w-full text-precisc-blue font-medium placeholder:text-gray-400">
+                    </div>
+                    <div class="flex items-center bg-white rounded-lg px-3 py-1.5 flex-1 border border-transparent focus-within:border-precisc-green transition-all">
+                        <i data-lucide="mail" class="w-4 h-4 text-gray-400 mr-2"></i>
+                        <input type="email" id="demo-correo" placeholder="tu@correo.com" 
+                            class="bg-transparent text-sm outline-none w-full text-precisc-blue font-medium placeholder:text-gray-400">
+                    </div>
+                </div>
+            </div>
 
-        <!-- Main Workspace original de la App -->
+            <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-green hover:bg-emerald-700 text-white px-6 py-2.5 rounded-xl font-bold transition-all shadow-lg flex items-center space-x-2 flex-shrink-0">
+                <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+                <span>Probar Demo</span>
+            </button>
+        </header>
+
+        <!-- Main Workspace -->
         <div class="flex-1 flex overflow-hidden">
             
             <!-- Canvas Area -->
             <main class="flex-1 relative overflow-auto canvas-bg" id="canvas-container">
                 <div class="min-w-[1600px] min-h-[800px] w-full h-full relative" id="canvas">
-                    <!-- SVG Container for connection lines -->
                     <svg id="svg-layer" class="absolute inset-0 pointer-events-none w-full h-full z-0"></svg>
-                    
-                    <!-- Nodes will be injected here by JS -->
                 </div>
             </main>
 
-            <!-- Right Panel (Inspector) -->
+            <!-- Inspector Lateral -->
             <aside class="w-80 bg-precisc-card border-l border-precisc-border flex flex-col shadow-scandi z-10 flex-shrink-0 transition-transform duration-300" id="inspector">
                 <div class="p-6 border-b border-precisc-border bg-gray-50/50">
                     <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Inspector de nodo</h2>
                 </div>
-                
                 <div id="inspector-content" class="p-6 flex flex-col h-full items-center justify-center text-center text-gray-400">
                     <i data-lucide="mouse-pointer-click" class="w-8 h-8 mb-3 opacity-50"></i>
                     <p>Selecciona un nodo en el canvas para ver sus detalles y configuración técnica.</p>
                 </div>
             </aside>
         </div>
-    </div> <!-- FIN DEL WRAPPER DE LA APLICACIÓN -->
+    </div> 
 
-    <!-- SECCIÓN CONTACTO AGREGADA -->
+    <!-- SECCIÓN CONTACTO -->
     <section id="contacto">
         <div>
             <span class="section-label">Hablemos</span>
@@ -273,17 +275,15 @@
         </div>
     </section>
 
-    <!-- FOOTER AGREGADO -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-logo">dave.</div>
         <div class="footer-text">© 2026 · Especialista en procesos y gobierno TI · Pachuca, Hidalgo</div>
     </footer>
 
-    <!-- Final Report Modal Original (No se modifica) -->
+    <!-- Modal del Reporte -->
     <div id="report-modal" class="fixed inset-0 bg-precisc-blue/30 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
         <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto modal-enter border border-precisc-border">
-            
-            <!-- Modal Header -->
             <div class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-precisc-border px-8 py-5 flex justify-between items-center z-10">
                 <div class="flex items-center space-x-3">
                     <i data-lucide="file-check-2" class="w-6 h-6 text-precisc-green"></i>
@@ -294,7 +294,6 @@
                 </button>
             </div>
 
-            <!-- Simulated Report Content -->
             <div class="p-10">
                 <div class="max-w-3xl mx-auto border border-gray-200 rounded-lg p-10 bg-white shadow-sm">
                     <div class="flex justify-between items-start mb-10 border-b border-gray-100 pb-6">
@@ -354,102 +353,40 @@
         </div>
     </div>
 
-    <!-- LÓGICA ORIGINAL INTACTA -->
+    <!-- SCRIPTS -->
     <script>
-        // --- Workflow Configuration Data ---
         const nodesData = [
-            {
-                id: 'n0',
-                title: 'Schedule Trigger',
-                subtitle: 'Lunes 8:00 AM',
-                icon: 'clock',
-                x: 3, y: 45, // Percentages
-                tech: 'Node-Cron',
-                action: 'Inicia el flujo automáticamente basado en una expresión CRON.',
-                bizValue: 'Automatización sin intervención humana. Puntualidad exacta.'
-            },
-            {
-                id: 'n1',
-                title: 'Power BI / API',
-                subtitle: 'Extraer Métricas',
-                icon: 'database',
-                x: 23, y: 20,
-                tech: 'HTTP Request (GET)',
-                action: 'Llamada REST API a PowerBI para obtener KPIs de seguridad.',
-                bizValue: 'Conexión a la fuente de la verdad. Elimina latencia.'
-            },
-            {
-                id: 'n2',
-                title: 'Code Node (JS)',
-                subtitle: 'Calcular Deltas',
-                icon: 'code-2',
-                x: 43, y: 45,
-                tech: 'JavaScript Transform',
-                action: 'Calcula deltas de riesgo respecto al mes anterior.',
-                bizValue: 'Estandariza KPIs y elimina error humano.'
-            },
-            {
-                id: 'n3',
-                title: 'PDF Creator',
-                subtitle: 'Generar Reporte',
-                icon: 'file-text',
-                x: 63, y: 20,
-                tech: 'HTML to PDF Builder',
-                action: 'Inyecta datos en plantilla HTML y renderiza un PDF.',
-                bizValue: 'Entregables ejecutivos profesionales y unificados.'
-            },
-            {
-                id: 'n4',
-                title: 'MS Teams',
-                subtitle: 'Notificar CISO',
-                icon: 'message-square',
-                x: 83, y: 45,
-                tech: 'Webhook Post',
-                action: 'Envía mensaje adaptativo con PDF al equipo.',
-                bizValue: 'Acelera toma de decisiones con info inmediata.'
-            }
+            { id: 'n0', title: 'Schedule Trigger', subtitle: 'Lunes 8:00 AM', icon: 'clock', x: 3, y: 45, tech: 'Node-Cron', action: 'Inicia el flujo automáticamente basado en una expresión CRON.', bizValue: 'Automatización sin intervención humana. Puntualidad exacta.' },
+            { id: 'n1', title: 'Power BI / API', subtitle: 'Extraer Métricas', icon: 'database', x: 23, y: 20, tech: 'HTTP Request (GET)', action: 'Llamada REST API a PowerBI para obtener KPIs de seguridad.', bizValue: 'Conexión a la fuente de la verdad. Elimina latencia.' },
+            { id: 'n2', title: 'Code Node (JS)', subtitle: 'Calcular Deltas', icon: 'code-2', x: 43, y: 45, tech: 'JavaScript Transform', action: 'Calcula deltas de riesgo respecto al mes anterior.', bizValue: 'Estandariza KPIs y elimina error humano.' },
+            { id: 'n3', title: 'PDF Creator', subtitle: 'Generar Reporte', icon: 'file-text', x: 63, y: 20, tech: 'HTML to PDF Builder', action: 'Inyecta datos en plantilla HTML y renderiza un PDF.', bizValue: 'Entregables ejecutivos profesionales y unificados.' },
+            { id: 'n4', title: 'MS Teams / Correo', subtitle: 'Notificar Cliente', icon: 'message-square', x: 83, y: 45, tech: 'Webhook Post / SMTP', action: 'Envía el reporte ejecutivo generado directamente al destinatario.', bizValue: 'Acelera la comunicación y entrega de valor al instante.' }
         ];
 
-        // Define connections: source index -> target index
         const connections = [
-            [0, 1],
-            [1, 2],
-            [2, 3],
-            [3, 4]
+            [0, 1], [1, 2], [2, 3], [3, 4]
         ];
 
         let isRunning = false;
 
-        // --- Initialize ---
         document.addEventListener('DOMContentLoaded', () => {
             renderNodes();
-            // Initialize lucide icons
             lucide.createIcons();
-            // Draw lines after a short delay to ensure nodes are rendered
             setTimeout(drawLines, 100);
-            
-            // Redraw lines on window resize
             window.addEventListener('resize', drawLines);
             
-            // Set today's date in the report
             const today = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
             document.getElementById('report-date').innerText = today;
         });
 
-        // --- Render Nodes onto Canvas ---
         function renderNodes() {
             const canvas = document.getElementById('canvas');
-            
             nodesData.forEach((node, index) => {
                 const el = document.createElement('div');
                 el.id = `node-el-${index}`;
-                // Hacemos el nodo más ancho (w-80) y usamos flex-col para las descripciones
                 el.className = `workflow-node absolute w-80 bg-precisc-card border-2 border-precisc-border rounded-xl shadow-node p-5 cursor-pointer flex flex-col z-10`;
-                
-                // Position using CSS percentages
                 el.style.left = `${node.x}%`;
                 el.style.top = `${node.y}%`;
-                
                 el.onclick = () => selectNode(index);
 
                 el.innerHTML = `
@@ -464,32 +401,24 @@
                             <p class="text-xs text-gray-500 truncate mt-0.5">${node.subtitle}</p>
                         </div>
                     </div>
-                    
-                    <!-- Descripciones inyectadas directamente en la tarjeta -->
                     <div class="border-t border-gray-100 pt-3 text-xs space-y-3">
                         <div>
-                            <span class="font-bold text-gray-500 flex items-center gap-1.5 mb-1">
-                                <i data-lucide="settings-2" class="w-3.5 h-3.5"></i> ¿Qué hace?
-                            </span>
+                            <span class="font-bold text-gray-500 flex items-center gap-1.5 mb-1"><i data-lucide="settings-2" class="w-3.5 h-3.5"></i> ¿Qué hace?</span>
                             <span class="text-slate-600 leading-relaxed block">${node.action}</span>
                         </div>
                         <div>
-                            <span class="font-bold text-precisc-green flex items-center gap-1.5 mb-1">
-                                <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> ¿Por qué?
-                            </span>
+                            <span class="font-bold text-precisc-green flex items-center gap-1.5 mb-1"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i> ¿Por qué?</span>
                             <span class="text-slate-600 leading-relaxed block">${node.bizValue}</span>
                         </div>
                     </div>
                 `;
-                
                 canvas.appendChild(el);
             });
         }
 
-        // --- Draw SVG Connections ---
         function drawLines() {
             const svg = document.getElementById('svg-layer');
-            svg.innerHTML = ''; // Clear previous
+            svg.innerHTML = ''; 
 
             connections.forEach((conn, i) => {
                 const sourceEl = document.getElementById(`node-el-${conn[0]}`);
@@ -497,30 +426,23 @@
                 
                 if(!sourceEl || !targetEl) return;
 
-                // Calculate positions relative to canvas
                 const sourceRect = sourceEl.getBoundingClientRect();
                 const targetRect = targetEl.getBoundingClientRect();
                 const canvasRect = document.getElementById('canvas').getBoundingClientRect();
 
-                // Conectar desde el BORDE DERECHO del origen al BORDE IZQUIERDO del destino
                 const x1 = sourceRect.right - canvasRect.left;
                 const y1 = sourceRect.top + sourceRect.height / 2 - canvasRect.top;
-                
                 const x2 = targetRect.left - canvasRect.left;
                 const y2 = targetRect.top + targetRect.height / 2 - canvasRect.top;
 
-                // Create a smooth cubic bezier curve
                 const distance = Math.abs(x2 - x1);
                 const controlOffset = Math.max(distance * 0.5, 40); 
-
                 const pathData = `M ${x1} ${y1} C ${x1 + controlOffset} ${y1}, ${x2 - controlOffset} ${y2}, ${x2} ${y2}`;
 
-                // Base grey line
                 const basePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 basePath.setAttribute('d', pathData);
                 basePath.setAttribute('class', 'svg-path-base');
                 
-                // Active green line (overlay for animation)
                 const activePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 activePath.setAttribute('d', pathData);
                 activePath.setAttribute('class', 'svg-path-active');
@@ -529,23 +451,19 @@
                 svg.appendChild(basePath);
                 svg.appendChild(activePath);
 
-                // Setup stroke dash array for animation later
                 const length = activePath.getTotalLength();
                 activePath.style.strokeDasharray = length;
-                activePath.style.strokeDashoffset = length; // Hide initially
+                activePath.style.strokeDashoffset = length; 
             });
         }
 
-        // --- Interactions ---
         function selectNode(index) {
             const data = nodesData[index];
             const inspector = document.getElementById('inspector-content');
             
-            // Highlight selected node (remove from others)
             document.querySelectorAll('.workflow-node').forEach(n => n.classList.remove('ring-2', 'ring-precisc-blue', 'ring-offset-2'));
             document.getElementById(`node-el-${index}`).classList.add('ring-2', 'ring-precisc-blue', 'ring-offset-2');
 
-            // Update inspector HTML
             inspector.innerHTML = `
                 <div class="w-full text-left space-y-6">
                     <div class="flex items-center space-x-3 pb-4 border-b border-gray-100">
@@ -557,14 +475,12 @@
                             <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">${data.tech}</span>
                         </div>
                     </div>
-                    
                     <div class="space-y-2">
                         <h4 class="text-xs font-bold text-gray-500 uppercase flex items-center gap-2">
                             <i data-lucide="settings-2" class="w-4 h-4"></i> Acción Técnica
                         </h4>
                         <p class="text-sm text-slate-600 leading-relaxed bg-white border border-gray-100 p-4 rounded-lg shadow-sm">${data.action}</p>
                     </div>
-
                     <div class="space-y-2">
                         <h4 class="text-xs font-bold text-precisc-green uppercase flex items-center gap-2">
                             <i data-lucide="trending-up" class="w-4 h-4"></i> Valor de Negocio
@@ -576,85 +492,90 @@
             lucide.createIcons();
         }
 
-        // --- Workflow Execution Logic ---
         const delay = ms => new Promise(res => setTimeout(res, ms));
 
+        // LÓGICA ACTUALIZADA DE EJECUCIÓN Y CONEXIÓN A N8N
         async function executeWorkflow() {
-    if (isRunning) return;
+            if (isRunning) return;
 
-    // 1. Validar captura de datos
-    const nombre = document.getElementById('demo-nombre').value;
-    const correo = document.getElementById('demo-correo').value;
+            const inputNombre = document.getElementById('demo-nombre');
+            const inputCorreo = document.getElementById('demo-correo');
 
-    if (!nombre || !correo) {
-        alert("Por favor, ingresa tu nombre y correo para recibir el demo.");
-        return;
-    }
+            // 1. Validación de los campos
+            if (!inputNombre.value || !inputCorreo.value) {
+                inputNombre.parentElement.classList.add('border-red-400');
+                inputCorreo.parentElement.classList.add('border-red-400');
+                alert("Para enviarte el reporte generado, por favor ingresa tu nombre y correo.");
+                return;
+            }
 
-    isRunning = true;
-    
-    const btn = document.getElementById('btn-run');
-    btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Ejecutando...</span>`;
-    btn.classList.add('opacity-70', 'cursor-not-allowed');
-    lucide.createIcons();
+            // Quita las alertas visuales si están correctos
+            inputNombre.parentElement.classList.remove('border-red-400');
+            inputCorreo.parentElement.classList.remove('border-red-400');
 
-    // 2. Enviar datos a n8n (Fetch)
-    // REEMPLAZA ESTA URL CON TU WEBHOOK DE PRODUCCIÓN
-    const webhookUrl = 'https://www.n8n.expressenop.com/webhook/demo-seguridad'; 
-    
-    fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre: nombre, correo: correo })
-    }).catch(error => console.error('Error de conexión con n8n:', error));
+            isRunning = true;
+            
+            const btn = document.getElementById('btn-run');
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin fill-current"></i><span>Ejecutando...</span>`;
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+            lucide.createIcons();
 
-    // Reset UI
-    resetWorkflowUI();
+            // 2. Envío de datos al webhook de n8n
+            // IMPORTANTE: Cambia esta URL por la URL de Producción de tu nodo Webhook en n8n
+            const webhookUrl = 'https://tu-n8n.com/webhook/demo-seguridad'; 
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    nombre: inputNombre.value, 
+                    correo: inputCorreo.value 
+                })
+            }).catch(error => console.error('Error enviando a n8n:', error));
 
-    // Sequence execution (Tu animación original)
-    for (let i = 0; i < nodesData.length; i++) {
-        const nodeEl = document.getElementById(`node-el-${i}`);
-        const spinner = document.getElementById(`spinner-${i}`);
-        
-        nodeEl.classList.add('node-running');
-        spinner.classList.remove('hidden');
-        
-        selectNode(i);
+            // 3. Inicio de la Animación visual
+            resetWorkflowUI();
 
-        await delay(900); // Simula el tiempo de procesamiento
+            for (let i = 0; i < nodesData.length; i++) {
+                const nodeEl = document.getElementById(`node-el-${i}`);
+                const spinner = document.getElementById(`spinner-${i}`);
+                
+                nodeEl.classList.add('node-running');
+                spinner.classList.remove('hidden');
+                
+                selectNode(i);
 
-        nodeEl.classList.remove('node-running');
-        nodeEl.classList.add('node-completed');
-        spinner.classList.add('hidden');
-        document.getElementById(`check-${i}`).classList.remove('hidden');
+                await delay(900);
 
-        if (i < connections.length) {
-            const path = document.getElementById(`path-anim-${i}`);
-            path.style.strokeDashoffset = '0';
-            await delay(800); 
+                nodeEl.classList.remove('node-running');
+                nodeEl.classList.add('node-completed');
+                spinner.classList.add('hidden');
+                document.getElementById(`check-${i}`).classList.remove('hidden');
+
+                if (i < connections.length) {
+                    const path = document.getElementById(`path-anim-${i}`);
+                    path.style.strokeDashoffset = '0';
+                    await delay(800); 
+                }
+            }
+
+            await delay(500);
+            btn.innerHTML = `<i data-lucide="rotate-ccw" class="w-5 h-5 fill-current"></i><span>Reiniciar Workflow</span>`;
+            btn.classList.remove('opacity-70', 'cursor-not-allowed');
+            btn.classList.replace('bg-precisc-green', 'bg-precisc-blue');
+            lucide.createIcons();
+            
+            showModal();
+            isRunning = false;
         }
-    }
-
-    // Finish
-    await delay(500);
-    btn.innerHTML = `<i data-lucide="rotate-ccw" class="w-4 h-4"></i><span>Reiniciar Workflow</span>`;
-    btn.classList.remove('opacity-70', 'cursor-not-allowed');
-    btn.classList.replace('bg-precisc-blue', 'bg-precisc-green');
-    lucide.createIcons();
-    
-    showModal();
-    isRunning = false;
-}
 
         function resetWorkflowUI() {
-            // Reset button styling
             const btn = document.getElementById('btn-run');
-            btn.classList.replace('bg-precisc-green', 'bg-precisc-blue');
+            btn.classList.replace('bg-precisc-blue', 'bg-precisc-green');
 
             nodesData.forEach((_, i) => {
                 const el = document.getElementById(`node-el-${i}`);
                 el.classList.remove('node-running', 'node-completed');
-                
                 document.getElementById(`spinner-${i}`).classList.add('hidden');
                 document.getElementById(`check-${i}`).classList.add('hidden');
             });
@@ -662,24 +583,18 @@
             connections.forEach((_, i) => {
                 const path = document.getElementById(`path-anim-${i}`);
                 if(path) {
-                    // Instantly reset line without transition to avoid backwards animating visually
                     path.style.transition = 'none';
                     path.style.strokeDashoffset = path.getTotalLength();
-                    // Force reflow
                     void path.offsetWidth;
-                    // Re-apply transition for next execution
                     path.style.transition = 'stroke-dashoffset 1s ease-in-out';
                 }
             });
         }
 
-        // --- Modal Logic ---
         function showModal() {
             const modal = document.getElementById('report-modal');
             const content = document.getElementById('modal-content');
             modal.classList.remove('hidden');
-            
-            // Trigger animation
             requestAnimationFrame(() => {
                 content.classList.add('modal-enter-active');
                 content.classList.remove('modal-enter');
@@ -689,10 +604,8 @@
         function closeModal() {
             const modal = document.getElementById('report-modal');
             const content = document.getElementById('modal-content');
-            
             content.classList.remove('modal-enter-active');
             content.classList.add('modal-enter');
-            
             setTimeout(() => {
                 modal.classList.add('hidden');
             }, 300);
