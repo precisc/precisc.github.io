@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2XHQMXQQZ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,18 +13,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Precisc | Workflow automation demo</title>
     
-    <!-- Google Fonts: Nunito -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Tailwind Configuration -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -187,17 +185,21 @@
         }
         .footer-logo { font-size: 1.1rem; font-weight: 800; color: var(--accent); }
         .footer-text { font-size: .78rem; color: var(--text3); }
-.iti { width: 100%; } /* Hace que el selector ocupe todo el ancho del contenedor */
-.iti__country-list { color: #2c3e50; } /* Ajusta el color del texto de la lista de países */
         
+        /* Ajustes específicos para intl-tel-input */
+        .iti { 
+            width: 100%; 
+            display: block; 
+        } 
+        .iti__country-list { 
+            color: #2c3e50; 
+            z-index: 100 !important; 
+            text-align: left;
+        }
     </style>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
 </head>
 <body class="w-screen overflow-x-hidden text-sm flex flex-col pt-[73px]">
 
-    <!-- NAV PRINCIPAL -->
     <nav>
         <a href="../index.html" class="nav-logo">dave.</a>
         <ul class="nav-links hidden md:flex">
@@ -209,14 +211,10 @@
         </ul>
     </nav>
 
-    <!-- WRAPPER DE LA APLICACIÓN -->
-    <!-- Altura dinámica calculada para restar el nav (73px) -->
     <div class="w-full min-h-[calc(100vh-73px)] flex flex-col border-b border-precisc-border relative z-0">
         
-        <!-- HEADER MODIFICADO CON CAMPOS INTEGRADOS -->
         <header class="bg-precisc-card py-4 border-b border-precisc-border flex flex-col md:flex-row items-center justify-between px-6 shadow-sm z-20 gap-4">
             
-            <!-- Logo y Título -->
             <div class="flex items-center space-x-4 w-full md:w-auto justify-center md:justify-start">
                 <div class="bg-precisc-blue text-white font-extrabold text-lg px-2.5 py-0.5 rounded-md tracking-tighter">
                     dave.
@@ -225,46 +223,40 @@
                 <h1 class="text-lg font-semibold text-precisc-blue hidden sm:block">Precisc <span class="font-light text-gray-400">| Demo</span></h1>
             </div>
             
-            <!-- Contenedor del llamado a la acción y los campos -->
             <div class="flex flex-col items-center md:items-end gap-3 w-full md:w-auto mt-2 md:mt-0">
                 
-                <!-- Mensaje llamativo (CTA) -->
                 <div class="flex items-center gap-2 text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-1.5 rounded-full font-extrabold text-sm shadow-sm animate-pulse">
                     <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
                     <span>¡Pon a prueba el envío! Ingresa tus datos y da clic en Probar Demo</span>
                     <i data-lucide="arrow-down" class="w-4 h-4 text-emerald-600 hidden sm:block"></i>
                 </div>
 
-                <!-- Campos y Botón agrupados -->
                 <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-    <input type="text" id="demo-nombre" placeholder="Tu nombre" 
-        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[130px] md:w-[160px]" required>
-        
-    <input type="email" id="demo-correo" placeholder="tu@correo.com" 
-        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[150px] md:w-[180px]" required>
+                    <input type="text" id="demo-nombre" placeholder="Tu nombre" 
+                        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[130px] md:w-[160px]" required>
+                        
+                    <input type="email" id="demo-correo" placeholder="tu@correo.com" 
+                        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[150px] md:w-[180px]" required>
 
-    <input type="tel" id="demo-telefono" placeholder="WhatsApp (Ej: 521...)" 
-        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[150px] md:w-[180px]" required>
-    
-    <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-green hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold transition-all shadow-md flex items-center justify-center space-x-2 w-full sm:w-auto min-w-[140px]">
-        <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-        <span>Probar Demo</span>
-    </button>
-</div>
+                    <input type="tel" id="demo-telefono" placeholder="WhatsApp" 
+                        class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm outline-none focus:border-precisc-green focus:bg-white bg-gray-50 transition-all w-full sm:w-[150px] md:w-[180px]" required>
+                    
+                    <button id="btn-run" onclick="executeWorkflow()" class="bg-precisc-green hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold transition-all shadow-md flex items-center justify-center space-x-2 w-full sm:w-auto min-w-[140px]">
+                        <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        <span>Probar Demo</span>
+                    </button>
+                </div>
             </div>
         </header>
 
-        <!-- Main Workspace -->
         <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
             
-            <!-- Canvas Area -->
             <main class="flex-1 relative overflow-auto canvas-bg" id="canvas-container">
                 <div class="min-w-[1000px] md:min-w-[1600px] min-h-[600px] md:min-h-[800px] w-full h-full relative" id="canvas">
                     <svg id="svg-layer" class="absolute inset-0 pointer-events-none w-full h-full z-0"></svg>
                 </div>
             </main>
 
-            <!-- Inspector Lateral -->
             <aside class="w-full md:w-80 bg-precisc-card border-t md:border-t-0 md:border-l border-precisc-border flex flex-col shadow-scandi z-10 flex-shrink-0" id="inspector">
                 <div class="p-4 md:p-6 border-b border-precisc-border bg-gray-50/50">
                     <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider">Inspector de nodo</h2>
@@ -277,7 +269,6 @@
         </div>
     </div> 
 
-    <!-- SECCIÓN CONTACTO -->
     <section id="contacto">
         <div>
             <span class="section-label">Hablemos</span>
@@ -293,13 +284,11 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-logo">dave.</div>
         <div class="footer-text">© 2026 · Especialista en procesos y gobierno TI · Pachuca, Hidalgo</div>
     </footer>
 
-    <!-- Modal del Reporte -->
     <div id="report-modal" class="fixed inset-0 bg-precisc-blue/30 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 md:p-6">
         <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto modal-enter border border-precisc-border">
             <div class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-precisc-border px-6 py-4 flex justify-between items-center z-10">
@@ -373,7 +362,6 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         const nodesData = [
             { id: 'n0', title: 'Schedule Trigger', subtitle: 'Lunes 8:00 AM', icon: 'clock', x: 3, y: 45, tech: 'Node-Cron', action: 'Inicia el flujo automáticamente basado en una expresión CRON.', bizValue: 'Automatización sin intervención humana. Puntualidad exacta.' },
@@ -388,6 +376,7 @@
         ];
 
         let isRunning = false;
+        let iti; // Variable global para la instancia del teléfono
 
         document.addEventListener('DOMContentLoaded', () => {
             renderNodes();
@@ -397,6 +386,17 @@
             
             const today = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
             document.getElementById('report-date').innerText = today;
+
+            // Inicialización del input de teléfono con ladas
+            const inputTelefono = document.querySelector("#demo-telefono");
+            if(inputTelefono) {
+                iti = window.intlTelInput(inputTelefono, {
+                    initialCountry: "mx", // Por defecto México
+                    separateDialCode: true, // Muestra la lada fuera del campo
+                    preferredCountries: ["mx", "us", "es", "ar", "co"],
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+                });
+            }
         });
 
         function renderNodes() {
@@ -515,94 +515,92 @@
         const delay = ms => new Promise(res => setTimeout(res, ms));
 
         // LÓGICA DE EJECUCIÓN Y CONEXIÓN A N8N
-async function executeWorkflow() {
-    if (isRunning) return;
+        async function executeWorkflow() {
+            if (isRunning) return;
 
-    const inputNombre = document.getElementById('demo-nombre');
-    const inputCorreo = document.getElementById('demo-correo');
-    const inputTelefono = document.getElementById('demo-telefono');
+            const inputNombre = document.getElementById('demo-nombre');
+            const inputCorreo = document.getElementById('demo-correo');
+            const inputTelefono = document.getElementById('demo-telefono');
 
-    // 1. Obtener el número en formato internacional y limpiar todo lo que no sea dígito
-    // Esto quita el "+" y cualquier espacio o guión, dejando solo números (ej: 521771...)
-    const telefonoLimpio = iti.getNumber().replace(/\D/g, '');
+            // 1. Obtener el número en formato internacional y limpiar todo lo que no sea dígito
+            const telefonoLimpio = iti.getNumber().replace(/\D/g, '');
 
-    // 2. Validación de los campos
-    // iti.isValidNumber() verifica que el número tenga la longitud correcta para el país elegido
-    if (!inputNombre.value || !inputCorreo.value || !iti.isValidNumber()) {
-        inputNombre.classList.add('border-red-400');
-        inputCorreo.classList.add('border-red-400');
-        inputTelefono.classList.add('border-red-400');
-        
-        alert("Por favor, ingresa datos válidos. Verifica que el teléfono coincida con el país seleccionado.");
-        return;
-    }
+            // 2. Validación de los campos
+            if (!inputNombre.value || !inputCorreo.value || !iti.isValidNumber()) {
+                inputNombre.classList.toggle('border-red-400', !inputNombre.value);
+                inputCorreo.classList.toggle('border-red-400', !inputCorreo.value);
+                inputTelefono.classList.toggle('border-red-400', !iti.isValidNumber());
+                
+                alert("Por favor, ingresa datos válidos. Verifica que el teléfono coincida con el país seleccionado.");
+                return;
+            }
 
-    // Reset de estilos de error si pasa la validación
-    inputNombre.classList.remove('border-red-400');
-    inputCorreo.classList.remove('border-red-400');
-    inputTelefono.classList.remove('border-red-400');
+            // Reset de estilos
+            inputNombre.classList.remove('border-red-400');
+            inputCorreo.classList.remove('border-red-400');
+            inputTelefono.classList.remove('border-red-400');
 
-    isRunning = true;
-    
-    // Preparación del botón
-    const btn = document.getElementById('btn-run');
-    btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin fill-current"></i><span>Ejecutando...</span>`;
-    btn.classList.add('opacity-70', 'cursor-not-allowed');
-    lucide.createIcons();
+            isRunning = true;
+            
+            // Preparación del botón
+            const btn = document.getElementById('btn-run');
+            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin fill-current"></i><span>Ejecutando...</span>`;
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+            lucide.createIcons();
 
-    // 3. Envío de datos al webhook de n8n
-    const webhookUrl = 'https://n8n.expressenop.com/webhook/demo-seguridad'; 
-    
-    fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            nombre: inputNombre.value, 
-            correo: inputCorreo.value,
-            telefono: telefonoLimpio, // Enviamos el número sanitizado para Evolution API
-            riesgo: "12%",
-            controles: "93/114",
-            avance: "81.5%",
-            fecha: new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
-        })
-    }).catch(error => console.error('Error enviando a n8n:', error));
+            // 3. Envío de datos al webhook de n8n
+            const webhookUrl = 'https://n8n.expressenop.com/webhook/demo-seguridad'; 
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    nombre: inputNombre.value, 
+                    correo: inputCorreo.value,
+                    telefono: telefonoLimpio, // Sanitizado para Evolution API
+                    riesgo: "12%",
+                    controles: "93/114",
+                    avance: "81.5%",
+                    fecha: new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
+                })
+            }).catch(error => console.error('Error enviando a n8n:', error));
 
-    // 4. Inicio de la Animación visual del Workflow
-    resetWorkflowUI();
+            // 4. Inicio de la Animación visual del Workflow
+            resetWorkflowUI();
 
-    for (let i = 0; i < nodesData.length; i++) {
-        const nodeEl = document.getElementById(`node-el-${i}`);
-        const spinner = document.getElementById(`spinner-${i}`);
-        
-        nodeEl.classList.add('node-running');
-        spinner.classList.remove('hidden');
-        
-        selectNode(i);
+            for (let i = 0; i < nodesData.length; i++) {
+                const nodeEl = document.getElementById(`node-el-${i}`);
+                const spinner = document.getElementById(`spinner-${i}`);
+                
+                nodeEl.classList.add('node-running');
+                spinner.classList.remove('hidden');
+                
+                selectNode(i);
 
-        await delay(900);
+                await delay(900);
 
-        nodeEl.classList.remove('node-running');
-        nodeEl.classList.add('node-completed');
-        spinner.classList.add('hidden');
-        document.getElementById(`check-${i}`).classList.remove('hidden');
+                nodeEl.classList.remove('node-running');
+                nodeEl.classList.add('node-completed');
+                spinner.classList.add('hidden');
+                document.getElementById(`check-${i}`).classList.remove('hidden');
 
-        if (i < connections.length) {
-            const path = document.getElementById(`path-anim-${i}`);
-            path.style.strokeDashoffset = '0';
-            await delay(800); 
+                if (i < connections.length) {
+                    const path = document.getElementById(`path-anim-${i}`);
+                    path.style.strokeDashoffset = '0';
+                    await delay(800); 
+                }
+            }
+
+            // 5. Finalización y muestra de reporte en pantalla
+            await delay(500);
+            btn.innerHTML = `<i data-lucide="rotate-ccw" class="w-5 h-5 fill-current"></i><span>Reiniciar Workflow</span>`;
+            btn.classList.remove('opacity-70', 'cursor-not-allowed');
+            btn.classList.replace('bg-precisc-green', 'bg-precisc-blue');
+            lucide.createIcons();
+            
+            showModal();
+            isRunning = false;
         }
-    }
-
-    // 5. Finalización y muestra de reporte en pantalla
-    await delay(500);
-    btn.innerHTML = `<i data-lucide="rotate-ccw" class="w-5 h-5 fill-current"></i><span>Reiniciar Workflow</span>`;
-    btn.classList.remove('opacity-70', 'cursor-not-allowed');
-    btn.classList.replace('bg-precisc-green', 'bg-precisc-blue');
-    lucide.createIcons();
-    
-    showModal();
-    isRunning = false;
-}
 
         function resetWorkflowUI() {
             const btn = document.getElementById('btn-run');
@@ -645,21 +643,6 @@ async function executeWorkflow() {
                 modal.classList.add('hidden');
             }, 300);
         }
-
-
-        let iti; // Variable global para la instancia del teléfono
-
-document.addEventListener('DOMContentLoaded', () => {
-    const inputTelefono = document.querySelector("#demo-telefono");
-    iti = window.intlTelInput(inputTelefono, {
-        initialCountry: "mx", // Por defecto México
-        separateDialCode: true, // Muestra la lada fuera del campo
-        preferredCountries: ["mx", "us", "es"],
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
-    });
-});
     </script>
-
-    
 </body>
 </html>
