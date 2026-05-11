@@ -187,7 +187,13 @@
         }
         .footer-logo { font-size: 1.1rem; font-weight: 800; color: var(--accent); }
         .footer-text { font-size: .78rem; color: var(--text3); }
+.iti { width: 100%; } /* Hace que el selector ocupe todo el ancho del contenedor */
+.iti__country-list { color: #2c3e50; } /* Ajusta el color del texto de la lista de países */
+        
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
 </head>
 <body class="w-screen overflow-x-hidden text-sm flex flex-col pt-[73px]">
 
@@ -514,25 +520,37 @@ async function executeWorkflow() {
 
     const inputNombre = document.getElementById('demo-nombre');
     const inputCorreo = document.getElementById('demo-correo');
-    const inputTelefono = document.getElementById('demo-telefono'); // Capturamos el nuevo input
+    const inputTelefono = document.getElementById('demo-telefono');
 
-    // 1. Validación de los campos (Agregamos el teléfono)
-    if (!inputNombre.value || !inputCorreo.value || !inputTelefono.value) {
-        inputNombre.parentElement.classList.add('border-red-400');
-        inputCorreo.parentElement.classList.add('border-red-400');
-        inputTelefono.parentElement.classList.add('border-red-400');
-        alert("Para enviarte el reporte, ingresa tu nombre, correo y WhatsApp con código de país.");
+    // 1. Obtener el número en formato internacional y limpiar todo lo que no sea dígito
+    // Esto quita el "+" y cualquier espacio o guión, dejando solo números (ej: 521771...)
+    const telefonoLimpio = iti.getNumber().replace(/\D/g, '');
+
+    // 2. Validación de los campos
+    // iti.isValidNumber() verifica que el número tenga la longitud correcta para el país elegido
+    if (!inputNombre.value || !inputCorreo.value || !iti.isValidNumber()) {
+        inputNombre.classList.add('border-red-400');
+        inputCorreo.classList.add('border-red-400');
+        inputTelefono.classList.add('border-red-400');
+        
+        alert("Por favor, ingresa datos válidos. Verifica que el teléfono coincida con el país seleccionado.");
         return;
     }
 
+    // Reset de estilos de error si pasa la validación
+    inputNombre.classList.remove('border-red-400');
+    inputCorreo.classList.remove('border-red-400');
+    inputTelefono.classList.remove('border-red-400');
+
     isRunning = true;
     
+    // Preparación del botón
     const btn = document.getElementById('btn-run');
     btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin fill-current"></i><span>Ejecutando...</span>`;
     btn.classList.add('opacity-70', 'cursor-not-allowed');
     lucide.createIcons();
 
-    // 2. Envío de datos al webhook de n8n incluyendo el TELEFONO
+    // 3. Envío de datos al webhook de n8n
     const webhookUrl = 'https://n8n.expressenop.com/webhook/demo-seguridad'; 
     
     fetch(webhookUrl, {
@@ -541,51 +559,50 @@ async function executeWorkflow() {
         body: JSON.stringify({ 
             nombre: inputNombre.value, 
             correo: inputCorreo.value,
-            telefono: inputTelefono.value, // <--- Este dato llegará a n8n
+            telefono: telefonoLimpio, // Enviamos el número sanitizado para Evolution API
             riesgo: "12%",
             controles: "93/114",
             avance: "81.5%",
-            fecha: new Date().toLocaleDateString('es-ES')
+            fecha: new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
         })
     }).catch(error => console.error('Error enviando a n8n:', error));
 
-    // ... (El resto de la animación de los nodos sigue igual)
+    // 4. Inicio de la Animación visual del Workflow
+    resetWorkflowUI();
+
+    for (let i = 0; i < nodesData.length; i++) {
+        const nodeEl = document.getElementById(`node-el-${i}`);
+        const spinner = document.getElementById(`spinner-${i}`);
         
-            // 3. Inicio de la Animación visual
-            resetWorkflowUI();
+        nodeEl.classList.add('node-running');
+        spinner.classList.remove('hidden');
+        
+        selectNode(i);
 
-            for (let i = 0; i < nodesData.length; i++) {
-                const nodeEl = document.getElementById(`node-el-${i}`);
-                const spinner = document.getElementById(`spinner-${i}`);
-                
-                nodeEl.classList.add('node-running');
-                spinner.classList.remove('hidden');
-                
-                selectNode(i);
+        await delay(900);
 
-                await delay(900);
+        nodeEl.classList.remove('node-running');
+        nodeEl.classList.add('node-completed');
+        spinner.classList.add('hidden');
+        document.getElementById(`check-${i}`).classList.remove('hidden');
 
-                nodeEl.classList.remove('node-running');
-                nodeEl.classList.add('node-completed');
-                spinner.classList.add('hidden');
-                document.getElementById(`check-${i}`).classList.remove('hidden');
-
-                if (i < connections.length) {
-                    const path = document.getElementById(`path-anim-${i}`);
-                    path.style.strokeDashoffset = '0';
-                    await delay(800); 
-                }
-            }
-
-            await delay(500);
-            btn.innerHTML = `<i data-lucide="rotate-ccw" class="w-5 h-5 fill-current"></i><span>Reiniciar Workflow</span>`;
-            btn.classList.remove('opacity-70', 'cursor-not-allowed');
-            btn.classList.replace('bg-precisc-green', 'bg-precisc-blue');
-            lucide.createIcons();
-            
-            showModal();
-            isRunning = false;
+        if (i < connections.length) {
+            const path = document.getElementById(`path-anim-${i}`);
+            path.style.strokeDashoffset = '0';
+            await delay(800); 
         }
+    }
+
+    // 5. Finalización y muestra de reporte en pantalla
+    await delay(500);
+    btn.innerHTML = `<i data-lucide="rotate-ccw" class="w-5 h-5 fill-current"></i><span>Reiniciar Workflow</span>`;
+    btn.classList.remove('opacity-70', 'cursor-not-allowed');
+    btn.classList.replace('bg-precisc-green', 'bg-precisc-blue');
+    lucide.createIcons();
+    
+    showModal();
+    isRunning = false;
+}
 
         function resetWorkflowUI() {
             const btn = document.getElementById('btn-run');
@@ -628,6 +645,21 @@ async function executeWorkflow() {
                 modal.classList.add('hidden');
             }, 300);
         }
+
+
+        let iti; // Variable global para la instancia del teléfono
+
+document.addEventListener('DOMContentLoaded', () => {
+    const inputTelefono = document.querySelector("#demo-telefono");
+    iti = window.intlTelInput(inputTelefono, {
+        initialCountry: "mx", // Por defecto México
+        separateDialCode: true, // Muestra la lada fuera del campo
+        preferredCountries: ["mx", "us", "es"],
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    });
+});
     </script>
+
+    
 </body>
 </html>
